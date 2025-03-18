@@ -10,10 +10,10 @@ config_dir = _curdir + "/config/"
 class Init(object):
     # uwsgi as static class variable, can be accessed by Init.uwsgi
     uwsgi = False
-    site_title = "cd_hw"
-    ip = "127.0.0.1"
-    dynamic_port = 9443
-    static_port = 8443
+    site_title = "41023206"
+    ip = "2001:288:6004:17:fff1:cd25:0000:b004"
+    dynamic_port = 9441
+    static_port = 8441
     def __init__(self):
         # hope to create downloads and images directories　
         if not os.path.isdir(_curdir + "/downloads"):
