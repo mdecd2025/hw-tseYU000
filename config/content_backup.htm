@@ -543,11 +543,39 @@ doc["aitetris"].bind("click", aitetris.do)
 <div class="winkVideoContainerClass"><video autoplay="autoplay" class="winkVideoClass" controls="controls" data-dirname="/cmsimde/static" data-varname="task4" height="630" muted="true" width="1008">
 <source src="./../downloads/task4.mp4" type="video/mp4"/></video></div><h2>Tasks4</h2>
 <p></p>
-<p>webots練習:<a href="/downloads/my_project2.zip">my_project2.zip</a></p><h3>Tutorial1</h3>
-<p><strong>webots教學重點摘要</strong></p>
+<p>webots四連桿練習:<a href="/downloads/my_project2.zip">my_project2.zip</a></p><h3>Tutorial1</h3>
 <p><a href="https://cyberbotics.com/doc/guide/tutorial-1-your-first-simulation-in-webots">https://cyberbotics.com/doc/guide/tutorial-1-your-first-simulation-in-webots</a></p>
-<p><strong></strong></p>
-<p><strong></strong></p><h2>Tasks5</h2>
+<p><strong>Tutorial1:Your First Simulation in Webots</strong></p>
+<p><span>當修改 Webots world並希望保存時，至關重要的是首先<strong>暫停模擬並重新加載到其初始狀態</strong>，即主工具列上的虛擬時間計數器應顯示 0:00:00:000。否則每次儲存時，每個 3D 物件的位置都會累積錯誤。對世界的任何修改都應按照以下順序進行：</span><strong><span><span>暫停、重置、修改和保存模擬。</span></span></strong></p>
+<ul>
+<li><span style="color: #ff99cc;"><span>WorldInfo</span><span><span><span style="color: #000000;">：設定模擬的各種參數</span></span></span></span></li>
+<li><span style="color: #ff99cc;">Viewpoint</span> : <span>定義主視點相機參數</span></li>
+<li><span style="color: #ff99cc;">TexturedBackground</span>：定義場景的背景
+<ul>
+<li>左鍵點擊<span>選擇</span><span style="background-color: #ffcc99;">Add new</span> 選擇<span style="background-color: #ffcc99;">Base nodes</span> 可新增自己需要的實體或形狀。</li>
+</ul>
+</li>
+<li><span style="color: #ff99cc;">TexturedBackgroundLight</span>：定義與上述背景相關的光</li>
+<li><span style="color: #ff99cc;">RectangleArena (<span style="color: #9e4270;">Derived from Solid</span>)</span><span><span>：定義您在該場景看到的物件</span></span><span><span></span></span>
+<ul>
+<li><span><span><span>選擇</span><code>floorTileSize、</code></span></span><span><span><code><code>wallHeight可更改場地大小與牆壁高度。</code></code></span></span></li>
+</ul>
+</li>
+</ul>
+<p><strong><code><code>新增物件:</code></code></strong></p>
+<p><span><span><code><code>雙擊<code>RectangleArena</code><span><span> </span>關閉他，再選取他左鍵點擊會顯示</span><span style="background-color: #ffcc99;"><code>Add</code> nwe</span><span><span style="background-color: #ffcc99;"> </span>。選擇<span> </span></span><code>PROTO nodes (Webots Projects) / objects / factory / containers / WoodenBox (Solid)，競技場中央會出現一個箱子，在場景樹中雙擊它以打開字段。</code></code></code></span></span></p>
+<ul>
+<li><span><span><code><code><code>size : 可更改物件大小。</code></code></code></span></span></li>
+<li><span>translation : 更改數值改變旋轉方向，或直接選取物件拉取要選轉的軸進行更改。</span></li>
+<li>更改完後記得進行儲存。</li>
+</ul>
+<p><strong>建立新控制器</strong></p>
+<p>Webots控制器可以用以下程式語言編寫：C、C++、Java、Python、MATLAB等。 C、C++和Java控制器需要先進行編譯才能作為機器人控制器運作</p>
+<h3>Tutorial2</h3>
+<p><strong>Tutorial2:Appearance</strong></p>
+<p>The Solid Node(實體節點)</p>
+<p></p>
+<p></p><h2>Tasks5</h2>
 <h2>Tasks6</h2><h1>Homework</h1>
 <p>作業 (30%)</p>
 <p>HW1 (5%): <span style="background-color: #ffff00;">建立由 Box 組成的平面四連桿機構 Webots 模擬場景</span></p>
