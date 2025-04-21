@@ -608,7 +608,89 @@ doc["aitetris"].bind("click", aitetris.do)
 <p><span><span><span face="monospace" style="font-family: monospace;"><span><span><img alt="" height="557" src="/images/螢幕擷取畫面 2025-04-11 130025.png" width="626"/></span></span></span></span></span></p>
 <p><span><span><span face="monospace" style="font-family: monospace;"><span><span><img alt="" height="535" src="/images/螢幕擷取畫面 2025-04-11 130045.png" width="626"/></span></span></span></span></span></p>
 <p></p>
+<h3>Tutorial5</h3>
+<p><strong>複合固體</strong></p>
+<p>實體的物理屬性和圖形屬性都可以由多個形狀節點組成。此外，每個Shape節點都可以放置在Pose節點中，以改變其相對位置和方向。 群組節點也可用於對多個子節點進行分組。</p>
 <p></p>
+<p><img alt="" height="671" src="/images/螢幕擷取畫面 2025-04-21 193241.png" width="402"/></p>
+<p><strong>物理屬性</strong></p>
+<p><span>一次只能指定這兩個欄位中的一個（另一個應設為</span><em><span>-1</span></em><span>）</span></p>
+<ol>
+<li><span><span>mass : </span></span>設定固體的總質量（單位：公斤）</li>
+<li>
+<h5>density：設定固體的密度（單位：公斤/立方公尺），與體積相乘得到總質量</h5>
+預設情況下，實體節點的質心設定在其原點（由實體的平移場定義）。可以使用物理節點的欄位來修改質心。質心是相對於固體的原點指定的。</li>
+</ol>
+<p><strong>The Rotation Field</strong></p>
+<p>Pose 節點的旋轉欄位使用「<span style="color: #ff99cc;">歐拉軸與角度</span>（Euler axis and angle）」的表示法來決定該節點（以及其子節點）的旋轉。<br data-end="69" data-start="66"/> 所謂的歐拉軸與角度旋轉是由四個成分所定義的：前三個成分是一個單位向量，用來表示旋轉軸的方向；第四個成分則是繞該軸旋轉的角度，單位為弧度（rad）。</p>
+<p><strong>Contacts</strong></p>
+<p><strong></strong><strong></strong><strong></strong>當兩個剛體發生碰撞時，會在碰撞點產生接觸。可以使用 <code data-end="45" data-start="26">ContactProperties</code> 節點來指定這些接觸的行為，例如兩個剛體之間的摩擦力。</p>
+<p><strong>basicTimeStep, ERP and CFM</strong></p>
+<p>實體模擬最關鍵的參數儲存在WorldInfo節點的basicTimeStep、ERP和欄位中。</p>
+<p>還有一些實體參數在 Webots 的常規使用上用處不大，例如Physics、WorldInfo和ContactProperties節點的一些欄位。</p><h3>Tutorial6</h3>
+<p><strong>Tutorial 6: 4-Wheeled Robot </strong></p>
+<p class="" data-end="38" data-start="0"><strong>將機器人拆分為 Solid 節點</strong><br data-end="19" data-start="16"/> 以下是建立機器人模型的一些定義與規則：</p>
+<ul data-end="639" data-is-last-node="" data-is-only-node="" data-start="40">
+<li class="" data-end="84" data-start="40">
+<p class="" data-end="84" data-start="42">包含 <code data-end="52" data-start="45">Solid</code> 節點及其所有衍生節點的集合稱為 <strong data-end="83" data-start="69">solid 節點群組</strong>。</p>
+</li>
+<li class="" data-end="180" data-start="86">
+<p class="" data-end="180" data-start="88"><code data-end="96" data-start="88">Device</code>、<code data-end="104" data-is-only-node="" data-start="97">Robot</code>、<code data-end="112" data-start="105">Joint</code> 和 <code data-end="122" data-start="115">Motor</code> 節點也有類似的定義。你可以在「節點階層圖（nodes chart diagram）」中獲得更多關於節點階層的資訊。</p>
+</li>
+<li class="" data-end="224" data-start="182">
+<p class="" data-end="224" data-start="184">多數的感測器與致動器節點同時具備 <code data-end="208" data-start="201">Solid</code> 與 <code data-end="219" data-start="211">Device</code> 的性質。</p>
+</li>
+<li class="" data-end="285" data-start="226">
+<p class="" data-end="285" data-start="228">機器人模型的主要結構是一棵由 <code data-end="250" data-start="243">Solid</code> 節點組成的樹狀結構。這棵樹的根節點應該是一個 <code data-end="281" data-start="274">Robot</code> 節點。</p>
+</li>
+<li class="" data-end="381" data-start="287">
+<p class="" data-end="381" data-start="289"><code data-end="296" data-start="289">Solid</code> 節點之間是透過 <code data-end="312" data-is-only-node="" data-start="305">Joint</code> 節點連接的。一個 <code data-end="330" data-start="322">Device</code> 節點應當是 <code data-end="344" data-start="337">Robot</code> 節點、<code data-end="355" data-start="348">Solid</code> 節點或 <code data-end="367" data-start="360">Joint</code> 節點的<strong data-end="380" data-start="371">直接子節點</strong>。</p>
+</li>
+<li class="" data-end="460" data-start="383">
+<p class="" data-end="460" data-start="385"><code data-end="392" data-start="385">Joint</code> 節點用來在其父節點與子節點之間加入一個或兩個自由度（DOF）。<code data-end="431" data-is-only-node="" data-start="424">Joint</code> 節點的直接父節點與子節點都必須是 <code data-end="456" data-start="449">Solid</code> 節點。</p>
+</li>
+<li class="" data-end="561" data-start="462">
+<p class="" data-end="561" data-start="464">從 <code data-end="473" data-start="466">Joint</code> 衍生出的節點可以建立不同種類的約束條件，用以限制所連接的 <code data-end="510" data-start="503">Solid</code> 節點間的運動。在機器人領域中最常見的是 <code data-end="543" data-start="531">HingeJoint</code>，它可以用來模擬旋轉馬達，例如輪子。</p>
+</li>
+<li class="" data-end="639" data-start="563">
+<p class="" data-end="639" data-start="565">若要監控或控制一個 <code data-end="582" data-start="575">Joint</code> 節點，可以分別在其 <code data-end="601" data-start="593">device</code> 欄位加入 <code data-end="623" data-start="607">PositionSensor</code> 節點或 <code data-end="635" data-start="628">Motor</code> 節點。</p>
+</li>
+</ul>
+<p></p>
+<p><img alt="" height="363" src="/images/螢幕擷取畫面 2025-04-21 195032.png" width="800"/></p>
+<ul data-end="437" data-start="153">
+<li class="" data-end="212" data-start="153">
+<p class="" data-end="212" data-start="155"><strong data-end="167" data-start="155">Robot 節點</strong>：<span class="relative -mx-px my-[-0.2rem] rounded px-px py-[0.2rem] transition-colors duration-100 ease-in-out">作為整個機器人的根節點。</span></p>
+</li>
+<li class="" data-end="272" data-start="213">
+<p class="" data-end="272" data-start="215"><strong data-end="227" data-start="215">Solid 節點</strong>：<span class="relative -mx-px my-[-0.2rem] rounded px-px py-[0.2rem] transition-colors duration-100 ease-in-out">代表機身和輪子等實體部件。</span></p>
+</li>
+<li class="" data-end="332" data-start="273">
+<p class="" data-end="332" data-start="275"><strong data-end="287" data-start="275">Joint 節點</strong>：<span class="relative -mx-px my-[-0.2rem] rounded px-px py-[0.2rem] transition-colors duration-100 ease-in-out">用於連接機身與輪子，提供必要的自由度。</span></p>
+</li>
+<li class="" data-end="332" data-start="273"><span class="relative -mx-px my-[-0.2rem] rounded px-px py-[0.2rem] transition-colors duration-100 ease-in-out"><strong>jointParameters</strong>：新增HingeJointParameters並配置錨點（anchor）和軸（axis）欄位。這些值必須根據車輪的位置進行修改。</span></li>
+<li class="" data-end="332" data-start="273"><span class="relative -mx-px my-[-0.2rem] rounded px-px py-[0.2rem] transition-colors duration-100 ease-in-out"><strong>endPoint</strong>：新增一個Solid節點，然後在Solid欄位中新增一個Shape節點，最後在Shape節點欄位中新增一個Cylinder。</span></li>
+<li class="" data-end="437" data-start="333">
+<p class="" data-end="437" data-start="335"><strong data-end="348" data-start="335">Device 節點</strong>：<span class="relative -mx-px my-[-0.2rem] rounded px-px py-[0.2rem] transition-colors duration-100 ease-in-out">包含感測器（如距離感測器）和致動器（如馬達）。</span></p>
+</li>
+</ul>
+<p></p><h3>Tutorial7</h3>
+<p></p>
+<p><span>任何 PROTO 文件至少應遵循以下結構：</span></p>
+<pre class="brush:html;auto-links:false;toolbar:false" contenteditable="false">#VRML_SIM R2025a utf8
+PROTO protoName [
+  protoFields
+]
+{
+  protoBody
+}</pre>
+<pre><br/><strong>使用 PROTO 節點</strong><br/>您的 PROTO 節點現在有兩個開放字段，但它們未連結到任何內部字段。<br/>要連結字段，您應該使用 IS 關鍵字，只需將Robot節點的translation x y z和字段替換為：rotation x y z angle<br/><br/></pre>
+<pre class="brush:html;auto-links:false;toolbar:false" contenteditable="false"> translation IS translation
+ rotation IS rotation
+</pre>
+<pre>並且Robot節點的Physicsmass節點的字段由以下方式設定：<br/><br/></pre>
+<pre class="brush:html;auto-links:false;toolbar:false" contenteditable="false"> mass IS bodyMass</pre>
+<pre><br/><br/><br/></pre><h3>Tutorial8</h3>
 <p></p>
 <p></p><h2>Tasks5</h2>
 <h2>Tasks6</h2><h1>Homework</h1>
@@ -641,7 +723,6 @@ doc["aitetris"].bind("click", aitetris.do)
 <p>HW1 (5%): <span style="background-color: #ffff00;">建立由 Box 組成的平面四連桿機構 Webots 模擬場景</span></p>
 <p>操作影片標題: 國立虎尾科技大學 - 機械設計工程系 - cd2025 HW1 - 學員學號</p>
 <p><a href="/downloads/HW1.7z">HW1.7z</a></p>
-<p>使用 SSH 協定執行作業倉儲的推送</p>
 <!-- 假如檔案小於 5mb, 將 mp4 檔案放入 downloads 目錄後取出 -->
 <div class="winkVideoContainerClass"><video autoplay="autoplay" class="winkVideoClass" controls="controls" data-dirname="/cmsimde/static" data-varname="HW1" height="630" muted="true" width="1008">
 <source src="./../downloads/HW1.mp4" type="video/mp4"/></video></div>
