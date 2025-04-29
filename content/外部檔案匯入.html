@@ -2,6 +2,7 @@
         <head>
         <title>41023206</title>
         <meta charset="utf-8">
+<meta property="head" content="H3">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="stylesheet" href="./../cmsimde/static/chimper/fonts/icomoon/style.css">
         <link rel="stylesheet" href="./../cmsimde/static/chimper/css/bootstrap.min.css">
@@ -141,22 +142,69 @@ img.add_border {
           </div>
           
         </header>
-    <div id="tipue_search_content"> <a href='Tasks.html'>Next</a> >> Tasks<br /><h1>About</h1>
-<p>課程名稱: 協同產品設計實習 - Collaborative Product Design Practice</p>
-<p>學員作業網站: <a href="https://mdecd2025.github.io/hw-tseYU000/">https://mdecd2025.github.io/hw-tseYU000/</a></p>
-<p>學員作業倉儲: <a href="https://github.com/mdecd2025/hw-tseYU000">https://github.com/mdecd2025/hw-tseYU000</a></p>
-<hr/>
-<p>課程代號: cd2025</p>
-<p>Teams 線上教學:</p>
-<p style="padding-left: 30px;">以 "學號@nfu.edu.tw" 登入<span> </span><a href="https://login.microsoftonline.com/">https://login.microsoftonline.com/</a><span> </span>Office 365</p>
-<p style="padding-left: 30px;">Teams 團隊代碼: <span>p5z4eku</span></p>
-<hr/>
-<p>課程評分:</p>
-<p style="padding-left: 30px;">Homework (30%) - 每週至少提交兩次與課程進度有關的內容, 完成後填回自評表單</p>
-<p style="padding-left: 30px;">Exam (40%) - 建立包含操作流程影片、心得以及提供檔案下載的網頁後填回自評表單</p>
-<p style="padding-left: 30px;">Final Report (30%) - 利用網頁內容進行簡報並提交 pdf 格式書面報告, 完成後填回自評表單</p>
-<p></p>
-<br /> <a href='Tasks.html'>Next</a> >> Tasks</div>
+    <div id="tipue_search_content">Tasks5 << <a href='Tasks5.html'>Previous</a> <a href='Tasks6.html'>Next</a> >> Tasks6<br /><h1>外部檔案匯入</h1>
+<p>在webots匯入obj檔</p>
+<p><code node="[object Object]"><span node="[object Object]">Mesh</span></code><span><span> </span></span><span node="[object Object]">節點是<span> </span></span><span node="[object Object]">Webots<span> </span></span><span node="[object Object]">用來處理外部<span> </span></span><span node="[object Object]">3D<span> </span></span><span node="[object Object]">模型（包括<span> </span></span><code node="[object Object]"><span node="[object Object]">.obj</span></code><span node="[object Object]">,<span> </span></span><code node="[object Object]"><span node="[object Object]">.stl</span></code><span node="[object Object]">,<span> </span></span><code node="[object Object]"><span node="[object Object]">.dae</span></code><span><span> </span></span><span node="[object Object]">等格式）的工具</span></p>
+<pre class="brush:html;auto-links:false;toolbar:false" contenteditable="false">#VRML_SIM R2022b utf8
+WorldInfo {
+  basicTimeStep 16
+}
+
+Viewpoint {
+  orientation 0 1 0 0
+  position 0 0.5 2
+}
+
+Transform {
+  translation 0 0.1 0  # 設置模型的位置
+  scale 0.01 0.01 0.01  # 調整模型比例
+  children [
+    Shape {
+      appearance PBRAppearance {  # 使用 PBR 材質
+        baseColorMap ImageTexture {
+          url [
+            "textures/my_texture.png"  # 貼圖檔案
+          ]
+        }
+        roughness 0.5
+        metallic 0
+      }
+      geometry Mesh {
+        url [
+          "models/my_model.obj"  # 引用 .obj 檔案
+        ]
+      }
+    }
+  ]
+}</pre>
+<p><strong>注意事項</strong></p>
+<ol>
+<li>
+<p><strong><span node="[object Object]">檔案路徑</span></strong><span node="[object Object]">：</span></p>
+<ul>
+<li><span node="[object Object]">確保<span> </span></span><code node="[object Object]"><span node="[object Object]">.obj</span></code><span> </span><span node="[object Object]">檔案的路徑正確，且與<span> </span></span><code node="[object Object]"><span node="[object Object]">.wbt</span></code><span> </span><span node="[object Object]">檔案的相對路徑一致。</span></li>
+<li><span node="[object Object]">如果<span> </span></span><code node="[object Object]"><span node="[object Object]">.obj</span></code><span> </span><span node="[object Object]">檔案有材質（</span><code node="[object Object]"><span node="[object Object]">.mtl</span></code><span node="[object Object]">），請確保<span> </span></span><code node="[object Object]"><span node="[object Object]">.mtl</span></code><span> </span><span node="[object Object]">和貼圖檔案（如<span> </span></span><code node="[object Object]"><span node="[object Object]">.png</span></code><span node="[object Object]">）也位於相同目錄中。</span></li>
+</ul>
+</li>
+<li>
+<p><strong><span node="[object Object]">檔案格式支援</span></strong><span node="[object Object]">：</span></p>
+<ul>
+<li><code node="[object Object]"><span node="[object Object]">Mesh</span></code><span> </span><span node="[object Object]">支援<span> </span></span><code node="[object Object]"><span node="[object Object]">.obj</span></code><span node="[object Object]">,<span> </span></span><code node="[object Object]"><span node="[object Object]">.stl</span></code><span node="[object Object]">,<span> </span></span><code node="[object Object]"><span node="[object Object]">.dae</span></code><span> </span><span node="[object Object]">等格式。如果<span> </span></span><code node="[object Object]"><span node="[object Object]">.obj</span></code><span> </span><span node="[object Object]">檔案無法正常加載，請檢查檔案格式，或考慮轉換為其他格式。</span></li>
+</ul>
+</li>
+<li>
+<p><strong><span node="[object Object]">比例調整</span></strong><span node="[object Object]">：</span></p>
+<ul>
+<li><span node="[object Object]">如果模型看起來太大或太小，可以透過<span> </span></span><code node="[object Object]"><span node="[object Object]">Transform</span></code><span> </span><span node="[object Object]">節點中的<span> </span></span><code node="[object Object]"><span node="[object Object]">scale</span></code><span> </span><span node="[object Object]">屬性進行調整。</span></li>
+</ul>
+</li>
+<li>
+<p><strong><span node="[object Object]">效能考量</span></strong><span node="[object Object]">：</span></p>
+<ul>
+<li><span node="[object Object]">高多邊形模型可能會影響<span> </span></span><span node="[object Object]">Webots<span> </span></span><span node="[object Object]">的效能，建議使用<span> </span></span><span node="[object Object]">3D<span> </span></span><span node="[object Object]">工具（如<span> </span></span><span node="[object Object]">Blender）對模型進行優化。</span></li>
+</ul>
+</li>
+</ol><br />Tasks5 << <a href='Tasks5.html'>Previous</a> <a href='Tasks6.html'>Next</a> >> Tasks6</div>
         
     <!-- footer -->
       <div class="container">

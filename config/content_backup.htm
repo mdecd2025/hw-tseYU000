@@ -691,8 +691,51 @@ PROTO protoName [
 <pre>並且Robot節點的Physicsmass節點的字段由以下方式設定：<br/><br/></pre>
 <pre class="brush:html;auto-links:false;toolbar:false" contenteditable="false"> mass IS bodyMass</pre>
 <pre><br/><br/><br/></pre><h3>Tutorial8</h3>
+<p><strong>Tutorial 8: The Supervisor</strong></p>
+<ol>
+<li>命名專案目錄，my_supervisor</li>
+<li>將世界文件命名my_supervisor.wbt為建議的empty.wbt</li>
+<li>透過改變floorSize場地將尺寸設置為 10x10 公尺來擴大競技場</li>
+<li>將機器人加入場景，並刪除其內建的控制器</li>
+<li>新增一個名為 supervisor 的機器人節點，並將其 supervisor 欄位設為 TRUE</li>
+<li>設定supervisor_controller為控制器的名稱並點擊完成</li>
+<li>再次展開機器人節點，按下controller方塊並點擊Select按鈕</li>
+</ol><h2>Tasks5</h2>
 <p></p>
-<p></p><h2>Tasks5</h2>
+<p>在webots匯入obj檔</p>
+<p><code node="[object Object]"><span node="[object Object]">Mesh</span></code><span><span> </span></span><span node="[object Object]">節點是<span> </span></span><span node="[object Object]">Webots<span> </span></span><span node="[object Object]">用來處理外部<span> </span></span><span node="[object Object]">3D<span> </span></span><span node="[object Object]">模型（包括<span> </span></span><code node="[object Object]"><span node="[object Object]">.obj</span></code><span node="[object Object]">,<span> </span></span><code node="[object Object]"><span node="[object Object]">.stl</span></code><span node="[object Object]">,<span> </span></span><code node="[object Object]"><span node="[object Object]">.dae</span></code><span><span> </span></span><span node="[object Object]">等格式）的工具</span></p>
+<pre class="brush:html;auto-links:false;toolbar:false" contenteditable="false">#VRML_SIM R2022b utf8
+WorldInfo {
+  basicTimeStep 16
+}
+
+Viewpoint {
+  orientation 0 1 0 0
+  position 0 0.5 2
+}
+
+Transform {
+  translation 0 0.1 0  # 設置模型的位置
+  scale 0.01 0.01 0.01  # 調整模型比例
+  children [
+    Shape {
+      appearance PBRAppearance {  # 使用 PBR 材質
+        baseColorMap ImageTexture {
+          url [
+            "textures/my_texture.png"  # 貼圖檔案
+          ]
+        }
+        roughness 0.5
+        metallic 0
+      }
+      geometry Mesh {
+        url [
+          "models/my_model.obj"  # 引用 .obj 檔案
+        ]
+      }
+    }
+  ]
+}</pre>
 <h2>Tasks6</h2><h1>Homework</h1>
 <p>作業 (30%)</p>
 <p>HW1 (5%): <span style="background-color: #ffff00;">建立由 Box 組成的平面四連桿機構 Webots 模擬場景</span></p>
